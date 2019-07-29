@@ -1,7 +1,6 @@
 import React from 'react';
 import './weather.css'
 import FiveDaysItem from './FiveDaysItem';
-import shortid from 'shortid';
 
 
 const Weather = (props) => {
@@ -18,7 +17,7 @@ const Weather = (props) => {
 
 
     let fiveDaysElement = props.weatherNextFiveDays.map( (m) => 
-    <FiveDaysItem  date={m.date}  minTemp={m.min}  maxTemp={m.max}  unit={m.unit}  key={shortid.generate()}/> );
+    <FiveDaysItem  date={m.date}  minTemp={m.min}  maxTemp={m.max}  unit={m.unit}  /> );
 
 
     return (
