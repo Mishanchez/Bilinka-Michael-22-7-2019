@@ -1,0 +1,21 @@
+
+
+.favorites-wrapper{
+    margin:20px;
+    padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-start;
+    }
+    
+    .favorites-wrapper a {
+     text-decoration: none;
+    }
+    
+    .favorites-item{
+        border :1px solid rgba(220, 220, 233, 0.856);
+        box-shadow: 0 0 8px 0 rgba(0,0,0,.08), 0 0 15px 0 rgba(0,0,0,.02), 0 0 20px 4px rgba(0,0,0,.06);
+        padding: 10px 13px;
+        margin: 3px;
+        text-decoration: none;
+    }
