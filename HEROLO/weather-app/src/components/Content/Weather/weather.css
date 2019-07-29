@@ -3,10 +3,8 @@
     height: calc(100% - 56px);
 }
 
-
-
 .weather_wrapper{
-    height: 100%;
+height: 100%;
 padding: 10px;
 margin: 10px;
 border :1px solid rgba(220, 220, 233, 0.856);
@@ -29,7 +27,6 @@ box-shadow: 0 0 8px 0 rgba(0,0,0,.08), 0 0 15px 0 rgba(0,0,0,.02), 0 0 20px 4px 
     text-align: center
  }
  
-
  .weather_page_searchwrapper{
      display: flex;
      justify-content: center;
@@ -79,7 +76,6 @@ box-shadow: 0 0 8px 0 rgba(0,0,0,.08), 0 0 15px 0 rgba(0,0,0,.02), 0 0 20px 4px 
     padding: 0;
 }
 
-
 .five_days{
     display: inline-block;
     margin: 5px;
@@ -87,7 +83,6 @@ box-shadow: 0 0 8px 0 rgba(0,0,0,.08), 0 0 15px 0 rgba(0,0,0,.02), 0 0 20px 4px 
     border :0.5px solid rgba(220, 220, 233, 0.856);
     box-shadow: 0 0 0 1px rgb(187, 196, 214)
 }
-
 
 .fivedays-wrapper{
     display: flex;

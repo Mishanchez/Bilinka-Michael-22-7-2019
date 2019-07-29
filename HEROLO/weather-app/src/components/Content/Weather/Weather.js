@@ -5,15 +5,12 @@ import FiveDaysItem from './FiveDaysItem';
 
 const Weather = (props) => {
 
-
     let addFavorite = () => { props.addFavorite(props.currentLocation) }
-
 
     let existInFavorites = () => {
         return props.favorites.find((favorite) => favorite.locationKey === props.currentLocation.locationKey)
          || JSON.parse(window.localStorage.getItem('currentFavoriteSelected'));
-
-    }
+    };
 
 
     let fiveDaysElement = props.weatherNextFiveDays.map( (m) => 
@@ -35,11 +32,9 @@ const Weather = (props) => {
 
                 </div>
                 
-
             <h2>Scattered clouds</h2>
             
             <div className="fivedays-wrapper">  {fiveDaysElement}  </div>
-
 
         </div>
     )

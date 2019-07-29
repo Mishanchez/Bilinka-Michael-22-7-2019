@@ -28,7 +28,7 @@ class WeatherContainer extends React.Component {
         toast.error(`OOOpss !  ${err}`, {
             position: toast.POSITION.TOP_LEFT
         });
-    }
+    };
 
 
     componentDidMount() {
@@ -39,10 +39,11 @@ class WeatherContainer extends React.Component {
 
         if (favoriteLocationSelected) {
             this.setState({ currentLocation: { cityName: favoriteLocationSelected.cityName } })
-        }
+        };
+
         if (favoriteLocationSelected && favoriteLocationSelected.locationKey) {
             locationKey = favoriteLocationSelected.locationKey;
-        }
+        };
 
 
         axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&details=true `)
@@ -61,6 +62,7 @@ class WeatherContainer extends React.Component {
                     }
                 })
             }).catch(err => this.handleError(err))
+
         axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&details=true&metric=${this.state.metric}`)
             .then(res => {
 
@@ -75,7 +77,6 @@ class WeatherContainer extends React.Component {
                     day.unit = fivedaysSelected[i].Temperature.Maximum.Unit;
                     days.push(day);
                 };
-
                 this.setState({ weatherNextFiveDays: days });
             }).catch(err => this.handleError(err))
     };
@@ -97,27 +98,25 @@ class WeatherContainer extends React.Component {
                     weatherText: this.state.currentLocation.weatherText,
                 }
             })
-     
+            
+            axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.currentLocation.locationKey}?apikey=${API_KEY}&details=true&metric=${newTempMode === 'Metric'}`)
+                .then(res => {
+                    let fivedaysSelected = res.data.DailyForecasts;
 
-        axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.currentLocation.locationKey}?apikey=${API_KEY}&details=true&metric=${newTempMode === 'Metric'}`)
-        .then(res => {
-            let fivedaysSelected = res.data.DailyForecasts;
+                    let days = [];
 
-            let days = [];
-
-            for (let i = 0; i < fivedaysSelected.length; i++) {
-                let day = {};
-                day.date = fivedaysSelected[i].Date;
-                day.min = fivedaysSelected[i].Temperature.Minimum.Value;
-                day.max = fivedaysSelected[i].Temperature.Maximum.Value;
-                day.unit = fivedaysSelected[i].Temperature.Maximum.Unit;
-                days.push(day);
-            }
-
-            this.setState({ weatherNextFiveDays: days });
-
-        }).catch(err => this.handleError(err))
-    };
+                    for (let i = 0; i < fivedaysSelected.length; i++) {
+                        let day = {};
+                        day.date = fivedaysSelected[i].Date;
+                        day.min = fivedaysSelected[i].Temperature.Minimum.Value;
+                        day.max = fivedaysSelected[i].Temperature.Maximum.Value;
+                        day.unit = fivedaysSelected[i].Temperature.Maximum.Unit;
+                        days.push(day);
+                    }
+                    this.setState({ weatherNextFiveDays: days });
+                    
+                }).catch(err => this.handleError(err))
+        };
     };
 
 
@@ -125,7 +124,6 @@ class WeatherContainer extends React.Component {
         searchText = searchText.replace(/[^A-Za-z]/ig, '')
 
         this.setState({ citySearchLabel: searchText })
-
 
         if (searchText && searchText.length) {
 
@@ -143,9 +141,7 @@ class WeatherContainer extends React.Component {
 
                         tempArray.push(city);
                     }
-
                     this.setState({ citySearchOptions: tempArray })
-
                 }).catch(err => this.handleError(err))
         }
     };
@@ -173,8 +169,8 @@ class WeatherContainer extends React.Component {
 
         axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${selectedCity.key}?apikey=${API_KEY}&details=true&metric=${this.state.metric}`)
             .then(res => {
-                let fivedaysSelected = res.data.DailyForecasts;
 
+                let fivedaysSelected = res.data.DailyForecasts;
                 let days = [];
 
                 for (let i = 0; i < fivedaysSelected.length; i++) {
@@ -185,7 +181,6 @@ class WeatherContainer extends React.Component {
                     day.unit = fivedaysSelected[i].Temperature.Maximum.Unit;
                     days.push(day);
                 }
-
                 this.setState({ weatherNextFiveDays: days });
 
             }).catch(err => this.handleError(err))
@@ -198,24 +193,24 @@ class WeatherContainer extends React.Component {
 
             <div className='search_wrapper'>
 
-<div className="weather_page_searchwrapper">
-                <h5>Search </h5>
+                <div className="weather_page_searchwrapper">
+                    <h5>Search </h5>
 
-                <Autocomplete 
-                    getItemValue={(item) => item.label}
-                    items={this.state.citySearchOptions}
-            
-                    renderItem={(item, isHighlighted) =>
-                        <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-                          {item.label}
-                        </div>
-                      }
-                    value={this.state.citySearchLabel}
-                    onChange={(e) => this.citiesSearch(e.target.value)}
-                    onSelect={(val) => this.weatherSearch(val)}
+                    <Autocomplete
+                        getItemValue={(item) => item.label}
+                        items={this.state.citySearchOptions}
 
-                />
-</div>
+                        renderItem={(item, isHighlighted) =>
+                            <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                                {item.label}
+                            </div>
+                        }
+                        value={this.state.citySearchLabel}
+                        onChange={(e) => this.citiesSearch(e.target.value)}
+                        onSelect={(val) => this.weatherSearch(val)}
+
+                    />
+                </div>
             </div>
 
             <div className='weather_wrapper'>

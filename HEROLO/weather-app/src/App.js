@@ -16,13 +16,10 @@ function App(props) {
         </header>
 
         <div className='content-wrapper' >
-
-          <Route path={WEATHER_ROUTE} render={() => <WeatherContaine/>}   />
+          <Route path={WEATHER_ROUTE} render={() => <WeatherContaine />} />
           <Route path={FAVORITES_ROUTE} render={() => <FavoritesContainer />} />
           <Redirect from="/" to={WEATHER_ROUTE} />
-          
         </div>
-
 
       </div>
     </BrowserRouter>
