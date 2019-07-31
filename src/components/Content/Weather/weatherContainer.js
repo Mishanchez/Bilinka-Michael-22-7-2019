@@ -46,7 +46,7 @@ class WeatherContainer extends React.Component {
         };
 
 
-        axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&details=true `)
+        axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&details=true `)
             .then(res => {
 
                 let responseObject = res.data;
@@ -63,7 +63,7 @@ class WeatherContainer extends React.Component {
                 })
             }).catch(err => this.handleError(err))
 
-        axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&details=true&metric=${this.state.metric}`)
+        axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&details=true&metric=${this.state.metric}`)
             .then(res => {
 
                 let fivedaysSelected = res.data.DailyForecasts;
@@ -99,7 +99,7 @@ class WeatherContainer extends React.Component {
                 }
             })
             
-            axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.currentLocation.locationKey}?apikey=${API_KEY}&details=true&metric=${newTempMode === 'Metric'}`)
+            axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.currentLocation.locationKey}?apikey=${API_KEY}&details=true&metric=${newTempMode === 'Metric'}`)
                 .then(res => {
                     let fivedaysSelected = res.data.DailyForecasts;
 
@@ -127,7 +127,7 @@ class WeatherContainer extends React.Component {
 
         if (searchText && searchText.length) {
 
-            axios.get(`http://dataservice.accuweather.com//locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${searchText} `)
+            axios.get(`https://dataservice.accuweather.com//locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${searchText} `)
                 .then(res => {
                     let weatherData = res.data;;
 
@@ -150,7 +150,7 @@ class WeatherContainer extends React.Component {
     weatherSearch(val) {
         let selectedCity = this.state.citySearchOptions.find((city) => city.label === val);
 
-        axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${selectedCity.key}?apikey=${API_KEY}&details=true `)
+        axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${selectedCity.key}?apikey=${API_KEY}&details=true `)
             .then(res => {
                 let responseObject = res.data;
                 window.localStorage.clear();
@@ -167,7 +167,7 @@ class WeatherContainer extends React.Component {
                 })
             }).catch(err => this.handleError(err))
 
-        axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${selectedCity.key}?apikey=${API_KEY}&details=true&metric=${this.state.metric}`)
+        axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${selectedCity.key}?apikey=${API_KEY}&details=true&metric=${this.state.metric}`)
             .then(res => {
 
                 let fivedaysSelected = res.data.DailyForecasts;
