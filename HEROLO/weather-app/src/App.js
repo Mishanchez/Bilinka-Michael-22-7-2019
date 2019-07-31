@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { WEATHER_ROUTE, FAVORITES_ROUTE } from './constants';
 import FavoritesContainer from './components/Content/Favorites/FavoritesContainer';
@@ -8,7 +8,7 @@ import WeatherContaine from './components/Content/Weather/weatherContainer';
 
 function App(props) {
   return (
-    <BrowserRouter >
+    <HashRouter >
       <div className="App" >
 
         <header>
@@ -22,7 +22,7 @@ function App(props) {
         </div>
 
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 
 };
