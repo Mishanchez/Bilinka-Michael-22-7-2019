@@ -30,7 +30,7 @@ class WeatherContainer extends React.Component {
         });
     };
 
-
+    
     componentDidMount() {
 
         let locationKey = this.state.currentLocation.locationKey;
